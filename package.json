@@ -20,13 +20,14 @@
     "commit": "git cz",
     "dev": "yarn start",
     "format": "eslint --fix 'src/**/*.{ts,tsx}'",
-    "release": "semantic-release",
     "test": "jest test --detectOpenHandles --coverage",
     "update": "yarn update:upgrade && yarn update:install",
     "update:install": "yarn install && yarn upgrade",
     "update:upgrade": "ncu --upgrade"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@tegebu/syrup": "0.1.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
@@ -54,7 +55,7 @@
     "typescript": "4.0.3"
   },
   "engines": {
-    "node": ">= 14.5.0",
+    "node": ">= 14.13.0",
     "npm": "npm is not supported"
   },
   "engineStrict": true
