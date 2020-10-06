@@ -21,7 +21,9 @@
     "update:upgrade": "ncu --upgrade"
   },
   "dependencies": {
+    "@jamashita/publikum-error": "2.25.0",
     "@jamashita/publikum-interface": "2.25.0",
+    "@jamashita/publikum-monad": "2.25.0",
     "@jamashita/publikum-type": "2.25.0",
     "@tegebu/syrup": "0.1.0",
     "config": "3.3.2",

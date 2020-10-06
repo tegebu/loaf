@@ -483,6 +483,16 @@
     "@jamashita/publikum-error" "^2.25.0"
     "@jamashita/publikum-type" "^2.25.0"
 
+"@jamashita/publikum-monad@2.25.0":
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/@jamashita/publikum-monad/-/publikum-monad-2.25.0.tgz#ab6d37def79208fe9e50ed357771aff275183a76"
+  integrity sha512-srNJsQtxwLfM/VrHgsa8sj879Kq/5WfQGVuyllBbGFCR/el3e+gNzGp5Z3gV/Cl1fEDoJSvJM92RlZtvuhezLg==
+  dependencies:
+    "@jamashita/publikum-error" "^2.25.0"
+    "@jamashita/publikum-interface" "^2.25.0"
+    "@jamashita/publikum-object" "^2.25.0"
+    "@jamashita/publikum-type" "^2.25.0"
+
 "@jamashita/publikum-object@2.25.0", "@jamashita/publikum-object@^2.25.0":
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/@jamashita/publikum-object/-/publikum-object-2.25.0.tgz#6fab9584b31fd3b20116330184f2cfe1800762b8"
