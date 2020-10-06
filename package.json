@@ -8,9 +8,7 @@
   },
   "license": "MIT",
   "author": "tegebu <info@tegebu.com>",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "main": "./index.js",
   "files": [
     "dist",
     "src"
@@ -18,8 +16,9 @@
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
     "commit": "git cz",
-    "dev": "yarn start",
+    "dev": "ts-node src/Server.ts",
     "format": "eslint --fix 'src/**/*.{ts,tsx}'",
+    "start": "node dist/Server.js",
     "test": "jest test --detectOpenHandles --coverage",
     "update": "yarn update:upgrade && yarn update:install",
     "update:install": "yarn install && yarn upgrade",
