@@ -3,5 +3,6 @@ export const Types = {
   File: Symbol(),
   Logger: Symbol(),
   TegeFileCommand: Symbol(),
-  TegeHierarchyFileCommand: Symbol()
+  TegeHierarchyFileCommand: Symbol(),
+  TegeInteractor: Symbol()
 } as const;
