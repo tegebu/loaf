@@ -838,10 +838,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tegebu/syrup@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@tegebu/syrup/-/syrup-1.2.0.tgz#b1c34f9858b79b698e83a62d653223c6e673e309"
-  integrity sha512-OOVezi8xlSwibteqtkJJcQNlR4M2BC98zMHrnVVikgFtCY2UBwvYhHLfBxvJAVuh7SAv98GZJ1n7A1zC4xVHag==
+"@tegebu/syrup@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@tegebu/syrup/-/syrup-1.3.0.tgz#d2bc5c4972f65c93077ece4e57aac95d50997644"
+  integrity sha512-9Pp2BU5q1dbgvpwm0iIiUt9RYyRnrjC9RjERlEapgY6acflghYUGXDtKXR/FK/0+ER/TblinsTng9Qq4eCLQvg==
   dependencies:
     "@jamashita/publikum-collection" "2.27.1"
     "@jamashita/publikum-error" "2.27.1"
