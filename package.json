@@ -21,6 +21,7 @@
     "update:upgrade": "ncu --upgrade"
   },
   "dependencies": {
+    "@jamashita/publikum-collection": "2.27.1",
     "@jamashita/publikum-error": "2.27.1",
     "@jamashita/publikum-interface": "2.27.1",
     "@jamashita/publikum-json": "2.27.1",
