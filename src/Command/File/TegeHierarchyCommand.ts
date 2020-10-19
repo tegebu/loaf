@@ -1,6 +1,6 @@
 import { JSONA, JSONAError } from '@jamashita/publikum-json';
 import { Superposition } from '@jamashita/publikum-monad';
-import { ClosureTableHierarchies, ClosureTableHierarchy, TegeError, TegeID } from '@tegebu/syrup';
+import { ClosureTableHierarchies, TegeError, TegeID } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../Container/Types';
@@ -27,20 +27,6 @@ export class TegeHierarchyCommand implements ITegeHierarchyCommand<FileError>, I
     this.logger = logger;
   }
 
-  public create(hierarchy: ClosureTableHierarchy<TegeID>): Superposition<unknown, TegeError | FileError> {
-    return Superposition.playground<string, JSONAError>(() => {
-      return JSONA.stringify(hierarchy.toJSON());
-    }, JSONAError).map<unknown, JSONAError | FileError>((str: string) => {
-      return this.file.write(path, str);
-    }, FileError).recover<unknown, TegeError | FileError>((err: JSONAError | FileError) => {
-      if (err instanceof JSONAError) {
-        throw new TegeError('THIS HIERARCHY CANNOT BE CONVERTED TO JSON');
-      }
-
-      throw err;
-    }, TegeError, FileError);
-  }
-
   public bulkCreate(hierarchies: ClosureTableHierarchies<TegeID>): Superposition<unknown, TegeError | FileError> {
     return Superposition.playground<string, JSONAError>(() => {
       return JSONA.stringify(hierarchies.toJSON());
@@ -48,6 +34,8 @@ export class TegeHierarchyCommand implements ITegeHierarchyCommand<FileError>, I
       return this.file.write(path, str);
     }, FileError).recover<unknown, TegeError | FileError>((err: JSONAError | FileError) => {
       if (err instanceof JSONAError) {
+        this.logger.error('JSON IS BROKEN');
+
         throw new TegeError('THIS HIERARCHY CANNOT BE CONVERTED TO JSON');
       }
 
