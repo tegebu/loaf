@@ -1,32 +1,31 @@
-import { UnimplementedError } from '@jamashita/publikum-error';
 import { ILogger } from '../Interface/ILogger';
 
 export class MockLogger implements ILogger {
   public silly(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public trace(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public debug(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public info(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public warn(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public error(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 
   public fatal(): unknown {
-    throw new UnimplementedError();
+    return null;
   }
 }
