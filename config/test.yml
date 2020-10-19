@@ -1,6 +1,5 @@
 port: 3000
 teges:
   path: ''
-  newPath: ''
   hierarchy:
     path: ''
