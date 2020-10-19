@@ -10,6 +10,14 @@ export class MockFile implements IFile {
     throw new UnimplementedError();
   }
 
+  public delete(): Promise<void> {
+    throw new UnimplementedError();
+  }
+
+  public copy(): Promise<void> {
+    throw new UnimplementedError();
+  }
+
   public exists(): Promise<boolean> {
     throw new UnimplementedError();
   }

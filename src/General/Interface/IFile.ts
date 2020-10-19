@@ -5,5 +5,7 @@ export interface IFile {
 
   delete(path: string): Promise<void>;
 
+  copy(src: string, dest: string): Promise<void>;
+
   exists(path: string): Promise<boolean>;
 }

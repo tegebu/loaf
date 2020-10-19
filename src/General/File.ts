@@ -44,6 +44,19 @@ export class File implements IFile {
     }
   }
 
+  public async copy(src: string, dest: string): Promise<void> {
+    try {
+      return await fs.promises.copyFile(src, dest);
+    }
+    catch (err: unknown) {
+      if (err instanceof Error) {
+        throw new FileError(err.message, err);
+      }
+
+      throw err;
+    }
+  }
+
   public async exists(path: string): Promise<boolean> {
     try {
       // eslint-disable-next-line no-bitwise
