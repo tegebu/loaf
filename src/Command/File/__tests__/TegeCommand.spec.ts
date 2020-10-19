@@ -141,6 +141,7 @@ describe('TegeCommand', () => {
       const recurr2: unknown = {
         r: recurr1
       };
+      // @ts-expect-error
       recurr1.r = recurr2;
 
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
