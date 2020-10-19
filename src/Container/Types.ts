@@ -2,5 +2,5 @@
 export const Types = {
   File: Symbol(),
   Logger: Symbol(),
-  TegeHierarchyCommand: Symbol()
+  TegeHierarchyFileCommand: Symbol()
 } as const;

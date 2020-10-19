@@ -14,6 +14,6 @@ c.bind<IFile>(Types.File).toConstantValue(new File());
 c.bind<ILogger>(Types.Logger).toConstantValue(logger);
 
 // Command
-c.bind<ITegeHierarchyCommand>(Types.TegeHierarchyCommand).to(TegeHierarchyFileCommand).inSingletonScope();
+c.bind<ITegeHierarchyCommand>(Types.TegeHierarchyFileCommand).to(TegeHierarchyFileCommand).inSingletonScope();
 
 export const container: Container = c;
