@@ -31,6 +31,19 @@ export class File implements IFile {
     }
   }
 
+  public async delete(path: string): Promise<void> {
+    try {
+      return await fs.promises.unlink(path);
+    }
+    catch (err: unknown) {
+      if (err instanceof Error) {
+        throw new FileError(err.message, err);
+      }
+
+      throw err;
+    }
+  }
+
   public async exists(path: string): Promise<boolean> {
     try {
       // eslint-disable-next-line no-bitwise
