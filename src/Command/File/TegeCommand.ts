@@ -1,7 +1,7 @@
 import { DataSourceError } from '@jamashita/publikum-error';
 import { JSONA, JSONAError } from '@jamashita/publikum-json';
 import { Superposition } from '@jamashita/publikum-monad';
-import { ClosureTable, ClosureTableHierarchies, TegeError, TegeID, Teges } from '@tegebu/syrup';
+import { TegeError, Teges } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../Container/Types';
@@ -9,7 +9,6 @@ import { FileError } from '../../General/Error/FileError';
 import { IFile } from '../../General/Interface/IFile';
 import { ILogger } from '../../Infrastructure/Interface/ILogger';
 import { ITegeCommand } from '../Interface/ITegeCommand';
-import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
 const path: string = config.get<string>('teges.path');
@@ -18,16 +17,13 @@ const path: string = config.get<string>('teges.path');
 export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
   public readonly noun: 'TegeCommand' = 'TegeCommand';
   public readonly source: 'File' = 'File';
-  private readonly hierarchyCommand: ITegeHierarchyCommand;
   private readonly file: IFile;
   private readonly logger: ILogger;
 
   public constructor(
-    @inject(Types.TegeHierarchyFileCommand) hierarchyCommand: ITegeHierarchyCommand,
     @inject(Types.File) file: IFile,
     @inject(Types.Logger) logger: ILogger
   ) {
-    this.hierarchyCommand = hierarchyCommand;
     this.file = file;
     this.logger = logger;
   }
@@ -37,11 +33,7 @@ export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
       return JSONA.stringify(teges.toJSON());
     }, JSONAError).map<unknown, JSONAError | FileError>((str: string) => {
       return this.file.write(path, str);
-    }, FileError).map<unknown, TegeError | JSONAError | FileError | DataSourceError>(() => {
-      const hierarchies: ClosureTableHierarchies<TegeID> = ClosureTable.toHierarchies(teges.getTree());
-
-      return this.hierarchyCommand.bulkCreate(hierarchies);
-    }).recover<unknown, TegeError | FileError>((err: TegeError | JSONAError | FileError | DataSourceError) => {
+    }, FileError).recover<unknown, TegeError | FileError>((err: TegeError | JSONAError | FileError | DataSourceError) => {
       if (err instanceof JSONAError) {
         this.logger.error('JSON IS BROKEN');
 
@@ -69,9 +61,7 @@ export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
       }
 
       return this.file.write(path, '');
-    }, TegeError).map<unknown, TegeError | FileError | DataSourceError>(() => {
-      return this.hierarchyCommand.delete();
-    }).recover<unknown, TegeError | FileError>((err: TegeError | FileError | DataSourceError) => {
+    }, TegeError).recover<unknown, TegeError | FileError>((err: TegeError | FileError | DataSourceError) => {
       if (err instanceof FileError) {
         throw err;
       }
