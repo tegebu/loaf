@@ -9,6 +9,7 @@ import { FileError } from '../../../General/Error/FileError';
 import { IFile } from '../../../General/Interface/IFile';
 import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { ITegeCommand } from '../Interface/ITegeCommand';
+import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
 const path: string = config.get<string>('teges.path');
@@ -17,13 +18,16 @@ const path: string = config.get<string>('teges.path');
 export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
   public readonly noun: 'TegeCommand' = 'TegeCommand';
   public readonly source: 'File' = 'File';
+  private readonly hierarchyCommand: ITegeHierarchyCommand;
   private readonly file: IFile;
   private readonly logger: ILogger;
 
   public constructor(
+    @inject(Types.TegeHierarchyFileCommand) hierarchyCommand: ITegeHierarchyCommand,
     @inject(Types.File) file: IFile,
     @inject(Types.Logger) logger: ILogger
   ) {
+    this.hierarchyCommand = hierarchyCommand;
     this.file = file;
     this.logger = logger;
   }
@@ -33,7 +37,9 @@ export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
       return JSONA.stringify(teges.toJSON());
     }, JSONAError).map<unknown, JSONAError | FileError>((str: string) => {
       return this.file.write(path, str);
-    }, FileError).recover<unknown, TegeError | FileError>((err: TegeError | JSONAError | FileError | DataSourceError) => {
+    }, FileError).map(() => {
+      return this.hierarchyCommand.bulkCreate(teges.toHierarchies());
+    }).recover<unknown, TegeError | FileError>((err: TegeError | JSONAError | FileError | DataSourceError) => {
       if (err instanceof JSONAError) {
         this.logger.error('JSON IS BROKEN');
 
@@ -61,7 +67,9 @@ export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
       }
 
       return this.file.write(path, '');
-    }, TegeError).recover<unknown, TegeError | FileError>((err: TegeError | FileError | DataSourceError) => {
+    }).map(() => {
+      return this.hierarchyCommand.delete();
+    }).recover<unknown, TegeError | FileError>((err: TegeError | FileError | DataSourceError) => {
       if (err instanceof FileError) {
         throw err;
       }
