@@ -37,7 +37,7 @@ export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {
       if (err instanceof JSONAError) {
         this.logger.error('JSON IS BROKEN');
 
-        throw new TegeError('THIS TEGE CANNOT BE CONVERTED TO JSON');
+        throw new TegeError('THESE TEGES CANNOT BE CONVERTED TO JSON');
       }
       if (err instanceof FileError) {
         throw err;

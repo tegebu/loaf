@@ -37,7 +37,7 @@ export class TegeHierarchyCommand implements ITegeHierarchyCommand<FileError>, I
       if (err instanceof JSONAError) {
         this.logger.error('JSON IS BROKEN');
 
-        throw new TegeError('THIS HIERARCHY CANNOT BE CONVERTED TO JSON');
+        throw new TegeError('THESE HIERARCHIES CANNOT BE CONVERTED TO JSON');
       }
 
       throw err;
