@@ -1,10 +1,10 @@
 import { DataSourceError } from '@jamashita/publikum-error';
 import { Superposition } from '@jamashita/publikum-monad';
-import { ClosureTable, ClosureTableHierarchies, Tege, TegeError, TegeID, Teges } from '@tegebu/syrup';
+import { TegeError, Teges } from '@tegebu/syrup';
 import { inject, injectable } from 'inversify';
-import { ITegeCommand } from '../Command/Interface/ITegeCommand';
-import { ITegeHierarchyCommand } from '../Command/Interface/ITegeHierarchyCommand';
 import { Types } from '../Container/Types';
+import { ITegeCommand } from '../Repository/Command/Interface/ITegeCommand';
+import { ITegeHierarchyCommand } from '../Repository/Command/Interface/ITegeHierarchyCommand';
 import { ITegeInteractor } from './Interface/ITegeInteractor';
 
 @injectable()
@@ -26,11 +26,9 @@ export class TegeInteractor implements ITegeInteractor {
       this.tegeCommand.delete(),
       this.tegeHierarchyCommand.delete()
     ]).map<unknown, TegeError | DataSourceError>(() => {
-      const hierarchies: ClosureTableHierarchies<TegeID> = ClosureTable.toHierarchies<TegeID, Tege>(teges.getTree());
-
       return Superposition.all<unknown, TegeError | DataSourceError>([
         this.tegeCommand.bulkCreate(teges),
-        this.tegeHierarchyCommand.bulkCreate(hierarchies)
+        this.tegeHierarchyCommand.bulkCreate(teges.toHierarchies())
       ]);
     });
   }

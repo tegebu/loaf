@@ -1,13 +1,14 @@
-import { ImmutableProject } from '@jamashita/publikum-collection';
+import { MockSequence } from '@jamashita/publikum-collection';
 import { DataSourceError } from '@jamashita/publikum-error';
 import { Schrodinger, Superposition } from '@jamashita/publikum-monad';
-import { MockClosureTableHierarchy, MockTege, MockTegeID, Tege, TegeError, TegeID, Teges } from '@tegebu/syrup';
+import { MockClosureTable, MockClosureTableHierarchy } from '@jamashita/publikum-tree';
+import { MockTege, MockTegeID, Tege, TegeError, TegeID, Teges } from '@tegebu/syrup';
 import 'reflect-metadata';
 import sinon, { SinonStub } from 'sinon';
-import { MockTegeCommand } from '../../Command/Mock/MockTegeCommand';
-import { MockTegeHierarchyCommand } from '../../Command/Mock/MockTegeHierarchyCommand';
 import { container } from '../../Container/Container';
 import { Types } from '../../Container/Types';
+import { MockTegeCommand } from '../../Repository/Command/Mock/MockTegeCommand';
+import { MockTegeHierarchyCommand } from '../../Repository/Command/Mock/MockTegeHierarchyCommand';
 import { ITegeInteractor } from '../Interface/ITegeInteractor';
 import { TegeInteractor } from '../TegeInteractor';
 
@@ -28,19 +29,23 @@ describe('TegeInteractor', () => {
     it('returns Alive', async () => {
       expect.assertions(1);
 
-      const id: TegeID = new MockTegeID();
-      const teges: Teges = Teges.of(
-        ImmutableProject.ofMap<TegeID, Tege>(
-          new Map<TegeID, Tege>([
-            [id, new MockTege({
-              id
-            })]
-          ])
-        ),
-        [
-          new MockClosureTableHierarchy(id, id)
-        ]
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
       );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
 
       const tegeCommand: MockTegeCommand = new MockTegeCommand();
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
@@ -70,19 +75,23 @@ describe('TegeInteractor', () => {
     it('returns Dead.TegeError when tegeCommand.delete() returns Dead.TegeError', async () => {
       expect.assertions(2);
 
-      const id: TegeID = new MockTegeID();
-      const teges: Teges = Teges.of(
-        ImmutableProject.ofMap<TegeID, Tege>(
-          new Map<TegeID, Tege>([
-            [id, new MockTege({
-              id
-            })]
-          ])
-        ),
-        [
-          new MockClosureTableHierarchy(id, id)
-        ]
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
       );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
 
       const tegeCommand: MockTegeCommand = new MockTegeCommand();
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
@@ -107,19 +116,23 @@ describe('TegeInteractor', () => {
     it('returns Dead.TegeError when tegeHierarchyCommand.delete() returns Dead.TegeError', async () => {
       expect.assertions(2);
 
-      const id: TegeID = new MockTegeID();
-      const teges: Teges = Teges.of(
-        ImmutableProject.ofMap<TegeID, Tege>(
-          new Map<TegeID, Tege>([
-            [id, new MockTege({
-              id
-            })]
-          ])
-        ),
-        [
-          new MockClosureTableHierarchy(id, id)
-        ]
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
       );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
 
       const tegeCommand: MockTegeCommand = new MockTegeCommand();
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
@@ -144,19 +157,23 @@ describe('TegeInteractor', () => {
     it('returns Dead.TegeError when tegeCommand.bulkCreate() returns Dead.TegeError', async () => {
       expect.assertions(2);
 
-      const id: TegeID = new MockTegeID();
-      const teges: Teges = Teges.of(
-        ImmutableProject.ofMap<TegeID, Tege>(
-          new Map<TegeID, Tege>([
-            [id, new MockTege({
-              id
-            })]
-          ])
-        ),
-        [
-          new MockClosureTableHierarchy(id, id)
-        ]
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
       );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
 
       const tegeCommand: MockTegeCommand = new MockTegeCommand();
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
@@ -189,19 +206,23 @@ describe('TegeInteractor', () => {
     it('returns Dead.TegeError when tegeHierarchyCommand.bulkCreate() returns Dead.TegeError', async () => {
       expect.assertions(2);
 
-      const id: TegeID = new MockTegeID();
-      const teges: Teges = Teges.of(
-        ImmutableProject.ofMap<TegeID, Tege>(
-          new Map<TegeID, Tege>([
-            [id, new MockTege({
-              id
-            })]
-          ])
-        ),
-        [
-          new MockClosureTableHierarchy(id, id)
-        ]
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
       );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
 
       const tegeCommand: MockTegeCommand = new MockTegeCommand();
       const tegeHierarchyCommand: MockTegeHierarchyCommand = new MockTegeHierarchyCommand();
