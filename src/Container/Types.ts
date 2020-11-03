@@ -2,6 +2,7 @@
 export const Types = {
   File: Symbol(),
   Logger: Symbol(),
+  TegeIDFactory: Symbol(),
   TegeFileCommand: Symbol(),
   TegeHierarchyFileCommand: Symbol(),
   TegeInteractor: Symbol()

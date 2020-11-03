@@ -1,4 +1,6 @@
 import { Container } from 'inversify';
+import { ITegeIDFactory } from '../Factory/Interface/TegeIDFactory';
+import { TegeIDFactory } from '../Factory/TegeIDFactory';
 import { File } from '../General/File';
 import { IFile } from '../General/Interface/IFile';
 import { ILogger } from '../Infrastructure/Interface/ILogger';
@@ -12,6 +14,9 @@ import { ITegeHierarchyCommand } from '../Repository/Command/Interface/ITegeHier
 import { Types } from './Types';
 
 const c: Container = new Container();
+
+// Factory
+c.bind<ITegeIDFactory>(Types.TegeIDFactory).to(TegeIDFactory).inSingletonScope();
 
 // Infrastructure
 c.bind<IFile>(Types.File).toConstantValue(new File());
