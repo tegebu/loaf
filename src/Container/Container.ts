@@ -1,14 +1,14 @@
 import { Container } from 'inversify';
-import { TegeCommand as TegeFileCommand } from '../Command/File/TegeCommand';
-import { TegeHierarchyCommand as TegeHierarchyFileCommand } from '../Command/File/TegeHierarchyCommand';
-import { ITegeCommand } from '../Command/Interface/ITegeCommand';
-import { ITegeHierarchyCommand } from '../Command/Interface/ITegeHierarchyCommand';
 import { File } from '../General/File';
 import { IFile } from '../General/Interface/IFile';
 import { ILogger } from '../Infrastructure/Interface/ILogger';
 import { logger } from '../Infrastructure/Logger';
 import { ITegeInteractor } from '../Interactor/Interface/ITegeInteractor';
 import { TegeInteractor } from '../Interactor/TegeInteractor';
+import { TegeCommand as TegeFileCommand } from '../Repository/Command/File/TegeCommand';
+import { TegeHierarchyCommand as TegeHierarchyFileCommand } from '../Repository/Command/File/TegeHierarchyCommand';
+import { ITegeCommand } from '../Repository/Command/Interface/ITegeCommand';
+import { ITegeHierarchyCommand } from '../Repository/Command/Interface/ITegeHierarchyCommand';
 import { Types } from './Types';
 
 const c: Container = new Container();
