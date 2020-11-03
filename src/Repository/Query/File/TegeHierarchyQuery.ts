@@ -33,9 +33,15 @@ export class TegeHierarchyQuery implements ITegeHierarchyQuery<FileError>, IFile
   }
 
   public all(): Superposition<ClosureTableHierarchies<TegeID>, TegeError | FileError> {
-    return Superposition.playground<string, FileError>(() => {
-      return this.file.read(path);
-    }, FileError).map<ReadonlyArray<ClosureTableJSON>, JSONAError | FileError>((str: string) => {
+    return Superposition.playground<boolean, FileError>(() => {
+      return this.file.exists(path);
+    }, FileError).map<string, FileError>((exists: boolean) => {
+      if (exists) {
+        return this.file.read(path);
+      }
+
+      throw new FileError(`NO SUCH FILE. GIVEN: ${path}`);
+    }).map<ReadonlyArray<ClosureTableJSON>, JSONAError | FileError>((str: string) => {
       return JSONA.parse<ReadonlyArray<ClosureTableJSON>>(str);
     }, JSONAError).map<ClosureTableHierarchies<TegeID>, TegeError | JSONAError | FileError>((json: ReadonlyArray<ClosureTableJSON>) => {
       return ClosureTableHierarchies.ofJSON(json, this.factory);
