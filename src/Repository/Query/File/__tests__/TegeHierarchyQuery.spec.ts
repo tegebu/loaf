@@ -13,7 +13,7 @@ import { TegeHierarchyQuery } from '../TegeHierarchyQuery';
 
 describe('TegeHierarchyQuery', () => {
   describe('container', () => {
-    it('returns gingleton instance', () => {
+    it('returns singleton instance', () => {
       expect.assertions(2);
 
       const query1: ITegeHierarchyQuery = container.get<ITegeHierarchyQuery>(Types.TegeHierarchyFileQuery);
