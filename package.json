@@ -29,7 +29,7 @@
     "@jamashita/publikum-object": "3.1.0",
     "@jamashita/publikum-tree": "3.1.0",
     "@jamashita/publikum-type": "3.1.0",
-    "@tegebu/syrup": "1.4.0",
+    "@tegebu/syrup": "1.5.0",
     "config": "3.3.2",
     "express": "4.17.1",
     "http-status-codes": "2.1.4",
