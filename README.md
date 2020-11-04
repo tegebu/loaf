@@ -43,6 +43,11 @@ yarn start
 yarn dev
 ```
 
+## TODO
+
+* [ ] Tege append
+* [ ] Tege update
+
 ## License
 
 [MIT](LICENSE)
