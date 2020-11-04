@@ -25,7 +25,7 @@ export class TegeQuery implements ITegeQuery<FileError>, IFileQuery {
   private readonly logger: ILogger;
 
   public constructor(
-    @inject(Types.TegeInteractor) hierarchyQuery: ITegeHierarchyQuery,
+    @inject(Types.TegeHierarchyFileQuery) hierarchyQuery: ITegeHierarchyQuery,
     @inject(Types.File) file: IFile,
     @inject(Types.Logger) logger: ILogger
   ) {
@@ -35,9 +35,15 @@ export class TegeQuery implements ITegeQuery<FileError>, IFileQuery {
   }
 
   public all(): Superposition<Teges, TegeError | FileError> {
-    return Superposition.playground<string, FileError>(() => {
-      return this.file.read(path);
-    }, FileError).map<ReadonlyArray<TegeJSON>, JSONAError | FileError>((str: string) => {
+    return Superposition.playground<boolean, FileError>(() => {
+      return this.file.exists(path);
+    }, FileError).map<string, FileError>((exists: boolean) => {
+      if (exists) {
+        return this.file.read(path);
+      }
+
+      throw new FileError(`NO SUCH FILE. GIVEN: ${path}`);
+    }).map<ReadonlyArray<TegeJSON>, JSONAError | FileError>((str: string) => {
       return JSONA.parse<ReadonlyArray<TegeJSON>>(str);
     }, JSONAError).map<Teges, TegeError | JSONAError | FileError | DataSourceError>((json: ReadonlyArray<TegeJSON>) => {
       const array: Array<Tege> = json.map<Tege>((j: TegeJSON) => {
@@ -54,8 +60,13 @@ export class TegeQuery implements ITegeQuery<FileError>, IFileQuery {
 
         throw new TegeError('THESE TEGES CANNOT BE CONVERTED TO JSON');
       }
+      if (err instanceof FileError) {
+        throw err;
+      }
       if (err instanceof DataSourceError) {
-        throw new FileError(err.message, err);
+        this.logger.error('hierarchyQuery THREW DataSourceError');
+
+        throw new TegeError(err.message, err);
       }
 
       throw err;
