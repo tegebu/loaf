@@ -29,9 +29,7 @@ export class TegeInteractor implements ITegeInteractor {
 
       teges.add(tege);
 
-      return this.tegeCommand.delete().map<unknown, TegeError | DataSourceError>(() => {
-        return this.tegeCommand.bulkCreate(teges);
-      });
+      return this.save(teges);
     });
   }
 
