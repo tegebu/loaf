@@ -15,7 +15,7 @@
     "dev": "ts-node src/Server.ts",
     "format": "eslint --fix 'src/**/*.{ts,tsx}'",
     "start": "node dist/Server.js",
-    "test": "jest test --detectOpenHandles --coverage",
+    "test": "jest test",
     "update": "yarn update:upgrade && yarn update:install",
     "update:install": "yarn install && yarn upgrade",
     "update:upgrade": "ncu --upgrade"
