@@ -1,4 +1,5 @@
 import { Container } from 'inversify';
+import { TegeController } from '../Controller/API/TegeController';
 import { ITegeIDFactory } from '../Factory/Interface/TegeIDFactory';
 import { TegeIDFactory } from '../Factory/TegeIDFactory';
 import { File } from '../General/File';
@@ -18,6 +19,9 @@ import { ITegeQuery } from '../Repository/Query/Interface/ITegeQuery';
 import { Types } from './Types';
 
 const c: Container = new Container();
+
+// Controller
+c.bind<TegeController>(TegeController).toSelf().inSingletonScope();
 
 // Factory
 c.bind<ITegeIDFactory>(Types.TegeIDFactory).to(TegeIDFactory).inSingletonScope();
