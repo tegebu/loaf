@@ -10,6 +10,7 @@
   "author": "tegebu <info@tegebu.com>",
   "main": "./index.js",
   "scripts": {
+    "build": "yarn clean && tsc -p tsconfig.json",
     "clean": "rimraf dist && rimraf coverage",
     "commit": "git cz",
     "dev": "ts-node src/Server.ts",
