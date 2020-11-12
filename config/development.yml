@@ -3,3 +3,6 @@ teges:
   path: './teges/all.json'
   hierarchy:
     path: './teges/hierarchy.json'
+  git:
+    remote: 'origin'
+    branch: 'main'

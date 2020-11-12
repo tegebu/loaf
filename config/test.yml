@@ -3,3 +3,6 @@ teges:
   path: ''
   hierarchy:
     path: ''
+  git:
+    remote: ''
+    branch: ''
