@@ -12,6 +12,7 @@ import { ITegeInteractor } from '../Interactor/Interface/ITegeInteractor';
 import { TegeInteractor } from '../Interactor/TegeInteractor';
 import { TegeCommand as TegeFileCommand } from '../Repository/Command/File/TegeCommand';
 import { TegeHierarchyCommand as TegeHierarchyFileCommand } from '../Repository/Command/File/TegeHierarchyCommand';
+import { TegeCommand as TegeGitCommand } from '../Repository/Command/Git/TegeCommand';
 import { ITegeCommand } from '../Repository/Command/Interface/ITegeCommand';
 import { ITegeHierarchyCommand } from '../Repository/Command/Interface/ITegeHierarchyCommand';
 import { TegeHierarchyQuery as TegeHierarchyFileQuery } from '../Repository/Query/File/TegeHierarchyQuery';
@@ -39,6 +40,7 @@ c.bind<ITegeInteractor>(Types.TegeInteractor).to(TegeInteractor).inSingletonScop
 // Command
 c.bind<ITegeCommand>(Types.TegeFileCommand).to(TegeFileCommand).inSingletonScope();
 c.bind<ITegeHierarchyCommand>(Types.TegeHierarchyFileCommand).to(TegeHierarchyFileCommand).inSingletonScope();
+c.bind<ITegeCommand>(Types.TegeGitCommand).to(TegeGitCommand).inSingletonScope();
 
 // Query
 c.bind<ITegeQuery>(Types.TegeFileQuery).to(TegeFileQuery).inSingletonScope();

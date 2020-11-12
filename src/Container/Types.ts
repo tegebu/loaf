@@ -6,6 +6,7 @@ export const Types = {
   TegeIDFactory: Symbol(),
   TegeFileCommand: Symbol(),
   TegeHierarchyFileCommand: Symbol(),
+  TegeGitCommand: Symbol(),
   TegeFileQuery: Symbol(),
   TegeHierarchyFileQuery: Symbol(),
   TegeInteractor: Symbol()
