@@ -6,6 +6,10 @@ export class MockGit implements IGit {
     throw new UnimplementedError();
   }
 
+  public commit(): Promise<void> {
+    throw new UnimplementedError();
+  }
+
   public push(): Promise<void> {
     throw new UnimplementedError();
   }
