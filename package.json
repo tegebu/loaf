@@ -13,7 +13,7 @@
     "build": "yarn clean && tsc -p tsconfig.json",
     "clean": "rimraf dist && rimraf coverage",
     "commit": "git cz",
-    "dev": "ts-node src/Server/Server.ts",
+    "dev": "NODE_ENV=development ts-node src/Server/Server.ts",
     "format": "eslint --fix 'src/**/*.{ts,tsx}'",
     "start": "node dist/Server/Server.js",
     "test": "jest test",
