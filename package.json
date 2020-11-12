@@ -38,6 +38,7 @@
     "inversify": "5.0.1",
     "reflect-metadata": "0.1.13",
     "routing-controllers": "0.9.0-alpha.6",
+    "simple-git": "2.21.0",
     "tslog": "2.11.0"
   },
   "devDependencies": {
