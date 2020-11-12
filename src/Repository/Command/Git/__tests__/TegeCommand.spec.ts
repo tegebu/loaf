@@ -52,14 +52,17 @@ describe('TegeCommand', () => {
       const stub1: SinonStub = sinon.stub();
       const stub2: SinonStub = sinon.stub();
       const stub3: SinonStub = sinon.stub();
+      const stub4: SinonStub = sinon.stub();
       const fileCommand: MockTegeCommand = new MockTegeCommand();
       const git: MockGit = new MockGit();
       fileCommand.bulkCreate = stub1;
       stub1.returns(Superposition.alive<unknown, TegeError>(null));
       git.add = stub2;
       stub2.resolves(undefined);
-      git.push = stub3;
-      stub3.resolves(undefined);
+      git.commit = stub3;
+      stub4.resolves(undefined);
+      git.push = stub4;
+      stub4.resolves(undefined);
 
       const logger: MockLogger = new MockLogger();
       const tegeCommand: TegeCommand = new TegeCommand(fileCommand, git, logger);
@@ -186,7 +189,7 @@ describe('TegeCommand', () => {
       }).toThrow(GitError);
     });
 
-    it('returns Dead.TegeError when git.push() rejects GitError', async () => {
+    it('returns Dead.TegeError when git.commit() rejects GitError', async () => {
       expect.assertions(2);
 
       const id1: TegeID = new MockTegeID();
@@ -216,8 +219,55 @@ describe('TegeCommand', () => {
       stub1.returns(Superposition.alive<unknown, TegeError>(null));
       git.add = stub2;
       stub2.resolves(undefined);
-      git.push = stub3;
+      git.commit = stub3;
       stub3.rejects(new GitError('test failed'));
+
+      const logger: MockLogger = new MockLogger();
+      const tegeCommand: TegeCommand = new TegeCommand(fileCommand, git, logger);
+
+      const schrodinger: Schrodinger<unknown, TegeError | GitError> = await tegeCommand.bulkCreate(teges).terminate();
+
+      expect(schrodinger.isDead()).toBe(true);
+      expect(() => {
+        schrodinger.get();
+      }).toThrow(GitError);
+    });
+
+    it('returns Dead.TegeError when git.push() rejects GitError', async () => {
+      expect.assertions(2);
+
+      const id1: TegeID = new MockTegeID();
+      const id2: TegeID = new MockTegeID();
+      const table: MockClosureTable<TegeID> = new MockClosureTable<TegeID>(
+        new MockClosureTableHierarchy(id1, id1),
+        new MockClosureTableHierarchy(id1, id2),
+        new MockClosureTableHierarchy(id2, id2)
+      );
+      const values: MockSequence<Tege> = new MockSequence<Tege>([
+        new MockTege({
+          id: id1
+        }),
+        new MockTege({
+          id: id2
+        })
+      ]);
+
+      const teges: Teges = Teges.ofTable(table, values);
+
+      const stub1: SinonStub = sinon.stub();
+      const stub2: SinonStub = sinon.stub();
+      const stub3: SinonStub = sinon.stub();
+      const stub4: SinonStub = sinon.stub();
+      const fileCommand: MockTegeCommand = new MockTegeCommand();
+      const git: MockGit = new MockGit();
+      fileCommand.bulkCreate = stub1;
+      stub1.returns(Superposition.alive<unknown, TegeError>(null));
+      git.add = stub2;
+      stub2.resolves(undefined);
+      git.commit = stub3;
+      stub3.resolves(undefined);
+      git.push = stub4;
+      stub4.rejects(new GitError('test failed'));
 
       const logger: MockLogger = new MockLogger();
       const tegeCommand: TegeCommand = new TegeCommand(fileCommand, git, logger);
