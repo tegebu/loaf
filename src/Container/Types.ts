@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/typedef
 export const Types = {
+  Git: Symbol(),
   File: Symbol(),
   Logger: Symbol(),
   TegeIDFactory: Symbol(),

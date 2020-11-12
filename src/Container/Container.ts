@@ -4,6 +4,8 @@ import { ITegeIDFactory } from '../Factory/Interface/TegeIDFactory';
 import { TegeIDFactory } from '../Factory/TegeIDFactory';
 import { File } from '../General/File/File';
 import { IFile } from '../General/File/Interface/IFile';
+import { Git } from '../General/Git/Git';
+import { IGit } from '../General/Git/Interface/IGit';
 import { ILogger } from '../Infrastructure/Interface/ILogger';
 import { logger } from '../Infrastructure/Logger';
 import { ITegeInteractor } from '../Interactor/Interface/ITegeInteractor';
@@ -27,6 +29,7 @@ c.bind<TegeController>(TegeController).toSelf().inSingletonScope();
 c.bind<ITegeIDFactory>(Types.TegeIDFactory).to(TegeIDFactory).inSingletonScope();
 
 // Infrastructure
+c.bind<IGit>(Types.Git).toConstantValue(new Git());
 c.bind<IFile>(Types.File).toConstantValue(new File());
 c.bind<ILogger>(Types.Logger).toConstantValue(logger);
 
