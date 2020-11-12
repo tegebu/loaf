@@ -7,14 +7,14 @@ import { Tege, TegeError, TegeID, TegeJSON, Teges } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Container/Types';
-import { FileError } from '../../../General/Error/FileError';
-import { IFile } from '../../../General/Interface/IFile';
+import { FileError } from '../../../General/File/Error/FileError';
+import { IFile } from '../../../General/File/Interface/IFile';
 import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { ITegeHierarchyQuery } from '../Interface/ITegeHierarchyQuery';
 import { ITegeQuery } from '../Interface/ITegeQuery';
 import { IFileQuery } from './Interface/IFileQuery';
 
-const path: string = config.get<string>('teges.path');
+const path: string = config.get<string>('teges.path.all');
 
 @injectable()
 export class TegeQuery implements ITegeQuery<FileError>, IFileQuery {

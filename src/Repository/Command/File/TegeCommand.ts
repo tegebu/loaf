@@ -5,14 +5,14 @@ import { TegeError, Teges } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Container/Types';
-import { FileError } from '../../../General/Error/FileError';
-import { IFile } from '../../../General/Interface/IFile';
+import { FileError } from '../../../General/File/Error/FileError';
+import { IFile } from '../../../General/File/Interface/IFile';
 import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { ITegeCommand } from '../Interface/ITegeCommand';
 import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
-const path: string = config.get<string>('teges.path');
+const path: string = config.get<string>('teges.path.all');
 
 @injectable()
 export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {

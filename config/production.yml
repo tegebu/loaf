@@ -1,5 +1,8 @@
 port: 3000
 teges:
-  path: './teges/all.json'
-  hierarchy:
-    path: './teges/hierarchy.json'
+  path:
+    all: './teges/all.json'
+    hierarchies: './teges/hierarchies.json'
+  git:
+    remote: 'origin'
+    branch: 'main'

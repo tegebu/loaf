@@ -15,7 +15,7 @@ export class TegeInteractor implements ITegeInteractor {
 
   public constructor(
     @inject(Types.TegeFileQuery) tegeQuery: ITegeQuery,
-    @inject(Types.TegeFileCommand) tegeCommand: ITegeCommand
+    @inject(Types.TegeGitCommand) tegeCommand: ITegeCommand
   ) {
     this.tegeQuery = tegeQuery;
     this.tegeCommand = tegeCommand;

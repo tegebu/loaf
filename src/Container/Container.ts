@@ -2,14 +2,17 @@ import { Container } from 'inversify';
 import { TegeController } from '../Controller/API/TegeController';
 import { ITegeIDFactory } from '../Factory/Interface/TegeIDFactory';
 import { TegeIDFactory } from '../Factory/TegeIDFactory';
-import { File } from '../General/File';
-import { IFile } from '../General/Interface/IFile';
+import { File } from '../General/File/File';
+import { IFile } from '../General/File/Interface/IFile';
+import { Git } from '../General/Git/Git';
+import { IGit } from '../General/Git/Interface/IGit';
 import { ILogger } from '../Infrastructure/Interface/ILogger';
 import { logger } from '../Infrastructure/Logger';
 import { ITegeInteractor } from '../Interactor/Interface/ITegeInteractor';
 import { TegeInteractor } from '../Interactor/TegeInteractor';
 import { TegeCommand as TegeFileCommand } from '../Repository/Command/File/TegeCommand';
 import { TegeHierarchyCommand as TegeHierarchyFileCommand } from '../Repository/Command/File/TegeHierarchyCommand';
+import { TegeCommand as TegeGitCommand } from '../Repository/Command/Git/TegeCommand';
 import { ITegeCommand } from '../Repository/Command/Interface/ITegeCommand';
 import { ITegeHierarchyCommand } from '../Repository/Command/Interface/ITegeHierarchyCommand';
 import { TegeHierarchyQuery as TegeHierarchyFileQuery } from '../Repository/Query/File/TegeHierarchyQuery';
@@ -27,6 +30,7 @@ c.bind<TegeController>(TegeController).toSelf().inSingletonScope();
 c.bind<ITegeIDFactory>(Types.TegeIDFactory).to(TegeIDFactory).inSingletonScope();
 
 // Infrastructure
+c.bind<IGit>(Types.Git).toConstantValue(new Git());
 c.bind<IFile>(Types.File).toConstantValue(new File());
 c.bind<ILogger>(Types.Logger).toConstantValue(logger);
 
@@ -36,6 +40,7 @@ c.bind<ITegeInteractor>(Types.TegeInteractor).to(TegeInteractor).inSingletonScop
 // Command
 c.bind<ITegeCommand>(Types.TegeFileCommand).to(TegeFileCommand).inSingletonScope();
 c.bind<ITegeHierarchyCommand>(Types.TegeHierarchyFileCommand).to(TegeHierarchyFileCommand).inSingletonScope();
+c.bind<ITegeCommand>(Types.TegeGitCommand).to(TegeGitCommand).inSingletonScope();
 
 // Query
 c.bind<ITegeQuery>(Types.TegeFileQuery).to(TegeFileQuery).inSingletonScope();

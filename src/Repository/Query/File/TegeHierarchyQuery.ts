@@ -6,13 +6,13 @@ import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Container/Types';
 import { ITegeIDFactory } from '../../../Factory/Interface/TegeIDFactory';
-import { FileError } from '../../../General/Error/FileError';
-import { IFile } from '../../../General/Interface/IFile';
+import { FileError } from '../../../General/File/Error/FileError';
+import { IFile } from '../../../General/File/Interface/IFile';
 import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { IFileCommand } from '../../Command/File/Interface/IFileCommand';
 import { ITegeHierarchyQuery } from '../Interface/ITegeHierarchyQuery';
 
-const path: string = config.get<string>('teges.hierarchy.path');
+const path: string = config.get<string>('teges.path.hierarchies');
 
 @injectable()
 export class TegeHierarchyQuery implements ITegeHierarchyQuery<FileError>, IFileCommand {

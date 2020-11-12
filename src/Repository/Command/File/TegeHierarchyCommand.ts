@@ -5,13 +5,13 @@ import { TegeError, TegeID } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Container/Types';
-import { FileError } from '../../../General/Error/FileError';
-import { IFile } from '../../../General/Interface/IFile';
+import { FileError } from '../../../General/File/Error/FileError';
+import { IFile } from '../../../General/File/Interface/IFile';
 import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
-const path: string = config.get<string>('teges.hierarchy.path');
+const path: string = config.get<string>('teges.path.hierarchies');
 
 @injectable()
 export class TegeHierarchyCommand implements ITegeHierarchyCommand<FileError>, IFileCommand {

@@ -47,6 +47,7 @@ yarn dev
 
 ## TODO
 
+* [ ] save to other repository! <https://github.com/tegebu/quai>
 * [ ] Tege append
 * [ ] Tege update
 
