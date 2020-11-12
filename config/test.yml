@@ -1,8 +1,8 @@
 port: 3000
 teges:
-  path: ''
-  hierarchy:
-    path: ''
+  path:
+    all: ''
+    hierarchy: ''
   git:
     remote: ''
     branch: ''
