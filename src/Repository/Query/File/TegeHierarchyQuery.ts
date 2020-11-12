@@ -12,7 +12,7 @@ import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { IFileCommand } from '../../Command/File/Interface/IFileCommand';
 import { ITegeHierarchyQuery } from '../Interface/ITegeHierarchyQuery';
 
-const path: string = config.get<string>('teges.hierarchy.path');
+const path: string = config.get<string>('teges.path.hierarchies');
 
 @injectable()
 export class TegeHierarchyQuery implements ITegeHierarchyQuery<FileError>, IFileCommand {

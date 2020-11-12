@@ -11,7 +11,7 @@ import { ILogger } from '../../../Infrastructure/Interface/ILogger';
 import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
-const path: string = config.get<string>('teges.hierarchy.path');
+const path: string = config.get<string>('teges.path.hierarchies');
 
 @injectable()
 export class TegeHierarchyCommand implements ITegeHierarchyCommand<FileError>, IFileCommand {

@@ -12,7 +12,7 @@ import { ITegeCommand } from '../Interface/ITegeCommand';
 import { ITegeHierarchyCommand } from '../Interface/ITegeHierarchyCommand';
 import { IFileCommand } from './Interface/IFileCommand';
 
-const path: string = config.get<string>('teges.path');
+const path: string = config.get<string>('teges.path.all');
 
 @injectable()
 export class TegeCommand implements ITegeCommand<FileError>, IFileCommand {

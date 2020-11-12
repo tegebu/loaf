@@ -14,7 +14,7 @@ import { ITegeHierarchyQuery } from '../Interface/ITegeHierarchyQuery';
 import { ITegeQuery } from '../Interface/ITegeQuery';
 import { IFileQuery } from './Interface/IFileQuery';
 
-const path: string = config.get<string>('teges.path');
+const path: string = config.get<string>('teges.path.all');
 
 @injectable()
 export class TegeQuery implements ITegeQuery<FileError>, IFileQuery {
