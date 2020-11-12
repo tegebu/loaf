@@ -9,4 +9,8 @@ export class MockTegeInteractor implements ITegeInteractor {
   public save(): Superposition<unknown, TegeError | DataSourceError> {
     throw new UnimplementedError();
   }
+
+  public create(): Superposition<unknown, TegeError | DataSourceError> {
+    throw new UnimplementedError();
+  }
 }
