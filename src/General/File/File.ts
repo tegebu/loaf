@@ -20,7 +20,7 @@ export class File implements IFile {
 
   public async write(path: string, data: string): Promise<void> {
     try {
-      return await fs.promises.writeFile(path, data);
+      await fs.promises.writeFile(path, data); return;
     }
     catch (err: unknown) {
       if (err instanceof Error) {
@@ -33,7 +33,7 @@ export class File implements IFile {
 
   public async delete(path: string): Promise<void> {
     try {
-      return await fs.promises.unlink(path);
+      await fs.promises.unlink(path); return;
     }
     catch (err: unknown) {
       if (err instanceof Error) {
@@ -46,7 +46,7 @@ export class File implements IFile {
 
   public async copy(src: string, dest: string): Promise<void> {
     try {
-      return await fs.promises.copyFile(src, dest);
+      await fs.promises.copyFile(src, dest); return;
     }
     catch (err: unknown) {
       if (err instanceof Error) {
