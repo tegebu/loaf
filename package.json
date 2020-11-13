@@ -22,15 +22,15 @@
     "update:upgrade": "ncu --upgrade"
   },
   "dependencies": {
-    "@jamashita/publikum-collection": "3.2.0",
-    "@jamashita/publikum-error": "3.2.0",
-    "@jamashita/publikum-interface": "3.2.0",
-    "@jamashita/publikum-json": "3.2.0",
-    "@jamashita/publikum-monad": "3.2.0",
-    "@jamashita/publikum-object": "3.2.0",
-    "@jamashita/publikum-tree": "3.2.0",
-    "@jamashita/publikum-type": "3.2.0",
-    "@tegebu/syrup": "1.6.0",
+    "@jamashita/publikum-collection": "3.3.0",
+    "@jamashita/publikum-error": "3.3.0",
+    "@jamashita/publikum-interface": "3.3.0",
+    "@jamashita/publikum-json": "3.3.0",
+    "@jamashita/publikum-monad": "3.3.0",
+    "@jamashita/publikum-object": "3.3.0",
+    "@jamashita/publikum-tree": "3.3.0",
+    "@jamashita/publikum-type": "3.3.0",
+    "@tegebu/syrup": "1.7.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
     "config": "3.3.2",
@@ -39,7 +39,7 @@
     "inversify": "5.0.1",
     "reflect-metadata": "0.1.13",
     "routing-controllers": "0.9.0-alpha.6",
-    "simple-git": "2.21.0",
+    "simple-git": "2.22.0",
     "tslog": "2.11.1"
   },
   "devDependencies": {
