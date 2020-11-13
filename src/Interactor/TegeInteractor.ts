@@ -36,6 +36,6 @@ export class TegeInteractor implements ITegeInteractor {
   public save(teges: Teges): Superposition<unknown, TegeError | DataSourceError> {
     return this.tegeCommand.delete().map<unknown, TegeError | DataSourceError>(() => {
       return this.tegeCommand.bulkCreate(teges);
-    });
+    }, DataSourceError);
   }
 }
