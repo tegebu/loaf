@@ -873,10 +873,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tegebu/syrup@1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@tegebu/syrup/-/syrup-1.8.0.tgz#808e24584a881e925de3ab5d871e3396c00b2d2b"
-  integrity sha512-ycpXVAONcWMkW69USHg432tEYvOXdNT+7eUhuuJxkJjr0pMHnXE8IyLbR91pUmZuh95W8N2xmD7qt+RHe1TaZQ==
+"@tegebu/syrup@1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@tegebu/syrup/-/syrup-1.9.0.tgz#4c8ec46304ae81c1b909520dbfdd261c55313c9e"
+  integrity sha512-aSEBzy5ElCUwelpiJ7bg+1gadNhTE0fYP0t/j7I2KMzMg8+DcCCLwBuXXTDGJ+J2iiZBYsKbkZjgMlNZ4Wtzgg==
   dependencies:
     "@jamashita/publikum-collection" "3.4.0"
     "@jamashita/publikum-error" "3.4.0"
@@ -2167,9 +2167,9 @@ copy-to@^2.0.1:
   integrity sha1-JoD7uAaKSNCGVrYJgJK9r8kG9KU=
 
 core-js@^3.6.1:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
-  integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.1.tgz#f51523668ac8a294d1285c3b9db44025fda66d47"
+  integrity sha512-9Id2xHY1W7m8hCl8NkhQn5CufmF/WuR30BTRewvCXc1aZd3kMECwNZ69ndLbekKfakw9Rf2Xyc+QR6E7Gg+obg==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"

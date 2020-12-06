@@ -30,7 +30,7 @@
     "@jamashita/publikum-object": "3.4.0",
     "@jamashita/publikum-tree": "3.4.0",
     "@jamashita/publikum-type": "3.4.0",
-    "@tegebu/syrup": "1.8.0",
+    "@tegebu/syrup": "1.9.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
     "config": "3.3.3",
