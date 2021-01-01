@@ -1,6 +1,6 @@
 import { DataSourceError } from '@jamashita/publikum-error';
 import { Superposition } from '@jamashita/publikum-monad';
-import { TegeError, TegeJSON, Teges } from '@tegebu/syrup';
+import { TegeError, Teges } from '@tegebu/syrup';
 import config from 'config';
 import { inject, injectable } from 'inversify';
 import { Types } from '../../../Container/Types';
@@ -36,12 +36,7 @@ export class TegeCommand implements ITegeCommand<GitError>, IGitCommand {
   public bulkCreate(teges: Teges): Superposition<unknown, TegeError | GitError> {
     return this.tegeCommend.bulkCreate(teges).map<void, TegeError | GitError | DataSourceError>(async () => {
       await this.git.add([all, hierarchies]);
-
-      const names: Array<string> = teges.toJSON().map((j: TegeJSON) => {
-        return j.name;
-      });
-
-      await this.git.commit(`CREATED ${teges.size()} items, ${names.join(', ')}`);
+      await this.git.commit(`docs: ✏️ CREATED NEW ${teges.size()} TEGE(S)`);
 
       return this.git.push(remote, branch);
     }, GitError).recover<unknown, TegeError | GitError>((err: TegeError | DataSourceError) => {

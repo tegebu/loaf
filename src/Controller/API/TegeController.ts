@@ -5,7 +5,7 @@ import { Tege, TegeError } from '@tegebu/syrup';
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
-import { Body, Controller, Post, Res } from 'routing-controllers';
+import { Body, Controller, Get, Post, Res } from 'routing-controllers';
 import { Types } from '../../Container/Types';
 import { ILogger } from '../../Infrastructure/Interface/ILogger';
 import { ITegeInteractor } from '../../Interactor/Interface/ITegeInteractor';
@@ -23,6 +23,11 @@ export class TegeController implements Noun<'TegeController'> {
   ) {
     this.tegeInteractor = tegeInteractor;
     this.logger = logger;
+  }
+
+  @Get('/ping')
+  public ping(@Res() res: Response): Response {
+    return res.status(StatusCodes.OK).send('pong');
   }
 
   @Post('/')

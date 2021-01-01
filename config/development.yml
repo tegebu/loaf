@@ -5,4 +5,4 @@ teges:
     hierarchies: './teges/hierarchies.json'
   git:
     remote: 'origin'
-    branch: 'main'
+    branch: 'teges'
